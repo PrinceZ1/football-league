@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "game_player", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"gameId", "playerId"})
+        @UniqueConstraint(columnNames = {"game_id", "player_id"})
 })
 @Data
 public class GamePlayer {
@@ -23,15 +23,15 @@ public class GamePlayer {
     private GamePlayerRole role;
 
     @ManyToOne
-    @JoinColumn(name = "gameId", nullable = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
     @ManyToOne
-    @JoinColumn(name = "teamId", nullable = false)
+    @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "playerId", nullable = false)
+    @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
     @CreationTimestamp

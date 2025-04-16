@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "user", indexes = {
@@ -47,9 +46,9 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "coach")
-    private List<Team> teams;
+    @OneToOne(mappedBy = "coach")
+    private Team team;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "referee")
     private Referee referee;
 }

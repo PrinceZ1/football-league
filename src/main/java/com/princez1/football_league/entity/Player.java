@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "player", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"teamId", "jerseyNumber"})
+        @UniqueConstraint(columnNames = {"team_id", "jersey_number"})
 })
 @Data
 public class Player {
@@ -34,7 +34,7 @@ public class Player {
     private PlayerStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "teamId", nullable = false)
+    @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
     @Column

@@ -24,15 +24,15 @@ public class AwardPayment {
     private BigDecimal amount;
 
     @ManyToOne
-    @JoinColumn(name = "awardId", nullable = false)
+    @JoinColumn(name = "award_id", nullable = false)
     private Award award;
 
     @ManyToOne
-    @JoinColumn(name = "teamId")
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "playerId")
+    @JoinColumn(name = "player_id")
     private Player player;
 
     @CreationTimestamp

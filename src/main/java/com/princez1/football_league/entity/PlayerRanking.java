@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "player_ranking", indexes = {
-        @Index(name = "idx_player_ranking_season", columnList = "seasonId")
+        @Index(name = "idx_player_ranking_season", columnList = "season_id")
 })
 @Data
 public class PlayerRanking {
@@ -24,11 +24,11 @@ public class PlayerRanking {
     private int assists;
 
     @ManyToOne
-    @JoinColumn(name = "seasonId", nullable = false)
+    @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
     @ManyToOne
-    @JoinColumn(name = "playerId", nullable = false)
+    @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
     @CreationTimestamp

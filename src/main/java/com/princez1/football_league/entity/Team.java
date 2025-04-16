@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "team", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name", "seasonId"})
+        @UniqueConstraint(columnNames = {"name", "season_id"})
 })
 @Data
 public class Team {
@@ -22,11 +22,11 @@ public class Team {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "seasonId", nullable = false)
+    @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
-    @ManyToOne
-    @JoinColumn(name = "coachId", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "coach_id", nullable = false)
     private User coach;
 
     @Column

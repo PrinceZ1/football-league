@@ -42,11 +42,11 @@ public class TeamRanking {
     private int points;
 
     @ManyToOne
-    @JoinColumn(name = "seasonId", nullable = false)
+    @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
     @ManyToOne
-    @JoinColumn(name = "teamId", nullable = false)
+    @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
     @CreationTimestamp

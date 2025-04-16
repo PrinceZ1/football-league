@@ -7,7 +7,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "award")
@@ -24,7 +23,7 @@ public class Award {
     private BigDecimal value;
 
     @ManyToOne
-    @JoinColumn(name = "seasonId", nullable = false)
+    @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
     @CreationTimestamp

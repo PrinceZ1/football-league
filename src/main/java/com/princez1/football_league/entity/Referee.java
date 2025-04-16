@@ -6,7 +6,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "referee")
@@ -23,8 +22,8 @@ public class Referee {
     private int experienceYears;
 
     @OneToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
+    @JoinColumn(name = "referee_id", nullable = false)
+    private User referee;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

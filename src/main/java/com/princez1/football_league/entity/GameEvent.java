@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "game_event", indexes = {
-        @Index(name = "idx_game_event_game", columnList = "gameId")
+        @Index(name = "idx_game_event_game", columnList = "game_id")
 })
 @Data
 public class GameEvent {
@@ -31,19 +31,19 @@ public class GameEvent {
     private String details;
 
     @ManyToOne
-    @JoinColumn(name = "gameId", nullable = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
     @ManyToOne
-    @JoinColumn(name = "playerId")
+    @JoinColumn(name = "player_id")
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name = "assistingPlayerId")
+    @JoinColumn(name = "assisting_player_id")
     private Player assistingPlayer;
 
     @ManyToOne
-    @JoinColumn(name = "teamId")
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @CreationTimestamp

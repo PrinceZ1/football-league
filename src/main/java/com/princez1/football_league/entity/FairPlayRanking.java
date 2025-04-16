@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "fair_play_ranking", indexes = {
-        @Index(name = "idx_fair_play_ranking_season", columnList = "seasonId")
+        @Index(name = "idx_fair_play_ranking_season", columnList = "season_id")
 })
 @Data
 public class FairPlayRanking {
@@ -30,11 +30,11 @@ public class FairPlayRanking {
     private double fairPlayPoints;
 
     @ManyToOne
-    @JoinColumn(name = "seasonId", nullable = false)
+    @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
     @ManyToOne
-    @JoinColumn(name = "teamId", nullable = false)
+    @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
     @CreationTimestamp

@@ -11,9 +11,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "game", indexes = {
-        @Index(name = "idx_game_round", columnList = "roundId"),
-        @Index(name = "idx_game_teams", columnList = "homeTeamId, awayTeamId"),
-        @Index(name = "idx_game_date", columnList = "gameDate")
+        @Index(name = "idx_game_round", columnList = "round_id"),
+        @Index(name = "idx_game_teams", columnList = "home_team_id, away_team_id"),
+        @Index(name = "idx_game_date", columnList = "game_date")
 })
 @Data
 public class Game {
@@ -44,19 +44,19 @@ public class Game {
     private String cancellationReason;
 
     @ManyToOne
-    @JoinColumn(name = "stadiumId", nullable = false)
+    @JoinColumn(name = "stadium_id", nullable = false)
     private Stadium stadium;
 
     @ManyToOne
-    @JoinColumn(name = "homeTeamId", nullable = false)
+    @JoinColumn(name = "home_team_id", nullable = false)
     private Team homeTeam;
 
     @ManyToOne
-    @JoinColumn(name = "awayTeamId", nullable = false)
+    @JoinColumn(name = "away_team_id", nullable = false)
     private Team awayTeam;
 
     @ManyToOne
-    @JoinColumn(name = "roundId", nullable = false)
+    @JoinColumn(name = "round_id", nullable = false)
     private Round round;
 
     @CreationTimestamp

@@ -27,15 +27,15 @@ public class Sponsorship {
     private LocalDate endDate;
 
     @ManyToOne
-    @JoinColumn(name = "sponsorId", nullable = false)
+    @JoinColumn(name = "sponsor_id", nullable = false)
     private Sponsor sponsor;
 
     @ManyToOne
-    @JoinColumn(name = "seasonId", nullable = false)
+    @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
     @ManyToOne
-    @JoinColumn(name = "teamId")
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @CreationTimestamp
