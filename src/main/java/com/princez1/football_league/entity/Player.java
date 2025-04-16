@@ -1,41 +1,51 @@
 package com.princez1.football_league.entity;
 
 import com.princez1.football_league.enums.PlayerStatus;
+import com.princez1.football_league.enums.Position;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "player")
+@Table(name = "player", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"teamId", "jerseyNumber"})
+})
+@Data
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private String position;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Position position;
 
-    @Column(name = "jersey_number")
-    private Integer jerseyNumber;
+    @Column(nullable = false)
+    private int jerseyNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PlayerStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", nullable = false)
+    @JoinColumn(name = "teamId", nullable = false)
     private Team team;
 
-    @OneToMany(mappedBy = "player")
-    private List<GameEvent> gameEvents;
+    @Column
+    private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "player")
-    private List<GamePlayer> gamePlayers;
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "player")
-    private List<TopScorerRanking> topScorerRankings;
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 }
 

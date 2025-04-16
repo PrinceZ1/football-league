@@ -2,39 +2,54 @@ package com.princez1.football_league.entity;
 
 import com.princez1.football_league.enums.UserRole;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user", indexes = {
+        @Index(name = "idx_user_username", columnList = "username"),
+        @Index(name = "idx_user_email", columnList = "email")
+})
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private int userId;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
 
+    // Must be hashed (e.g., using bcrypt) before storage
     @Column(nullable = false)
-    private String password; // Will be hashed (e.g., BCrypt)
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRole role;
 
-    @Column
+    @Column(nullable = false)
     private String fullName;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column
     private String phone;
 
-    @OneToOne
-    @JoinColumn(name = "team_id", unique = true)
-    private Team team; // For COACH role
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "referee_id", unique = true)
-    private Referee referee; // For REFEREE role
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 
+    @OneToMany(mappedBy = "coach")
+    private List<Team> teams;
+
+    @OneToOne(mappedBy = "user")
+    private Referee referee;
 }

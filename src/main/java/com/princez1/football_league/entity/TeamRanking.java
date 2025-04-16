@@ -1,16 +1,24 @@
 package com.princez1.football_league.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "team_ranking")
+@Table(name = "team_ranking", indexes = {
+        @Index(name = "idx_team_ranking_season", columnList = "seasonId")
+})
+@Data
 public class TeamRanking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
-    private int gamesPlayed;
+    private int matchesPlayed;
 
     @Column(nullable = false)
     private int wins;
@@ -21,25 +29,31 @@ public class TeamRanking {
     @Column(nullable = false)
     private int losses;
 
-    @Column(name = "goals_scored", nullable = false)
+    @Column(nullable = false)
     private int goalsScored;
 
-    @Column(name = "goals_conceded", nullable = false)
+    @Column(nullable = false)
     private int goalsConceded;
 
-    @Column(name = "goal_difference", nullable = false)
+    @Column(nullable = false)
     private int goalDifference;
 
     @Column(nullable = false)
     private int points;
 
     @ManyToOne
-    @JoinColumn(name = "season_id", nullable = false)
+    @JoinColumn(name = "seasonId", nullable = false)
     private Season season;
 
     @ManyToOne
-    @JoinColumn(name = "team_id", nullable = false)
+    @JoinColumn(name = "teamId", nullable = false)
     private Team team;
 
-    // Getters and Setters
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 }

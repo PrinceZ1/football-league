@@ -2,53 +2,69 @@ package com.princez1.football_league.entity;
 
 import com.princez1.football_league.enums.GameStatus;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "game")
+@Table(name = "game", indexes = {
+        @Index(name = "idx_game_round", columnList = "roundId"),
+        @Index(name = "idx_game_teams", columnList = "homeTeamId, awayTeamId"),
+        @Index(name = "idx_game_date", columnList = "gameDate")
+})
+@Data
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "game_date", nullable = false)
-    private LocalDateTime gameDate;
-
-    @Column
-    private String result;
+    private int id;
 
     @Column(nullable = false)
-    private int attendee;
+    private LocalDateTime gameDate;
+
+    @Column(nullable = false)
+    private int homeTeamGoals = 0;
+
+    @Column(nullable = false)
+    private int awayTeamGoals = 0;
+
+    @Column(nullable = false)
+    private int attendees = 0;
+
+    @Column(nullable = false)
+    private LocalDateTime registrationDeadline;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private GameStatus status;
 
+    @Column
+    private String cancellationReason;
+
     @ManyToOne
-    @JoinColumn(name = "stadium_id", nullable = false)
+    @JoinColumn(name = "stadiumId", nullable = false)
     private Stadium stadium;
 
     @ManyToOne
-    @JoinColumn(name = "home_team_id", nullable = false)
+    @JoinColumn(name = "homeTeamId", nullable = false)
     private Team homeTeam;
 
     @ManyToOne
-    @JoinColumn(name = "away_team_id", nullable = false)
+    @JoinColumn(name = "awayTeamId", nullable = false)
     private Team awayTeam;
 
     @ManyToOne
-    @JoinColumn(name = "round_id", nullable = false)
+    @JoinColumn(name = "roundId", nullable = false)
     private Round round;
 
-    @OneToMany(mappedBy = "game")
-    private List<GameEvent> gameEvents;
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "game")
-    private List<GamePlayer> gamePlayers;
-
-    @OneToMany(mappedBy = "game")
-    private List<RefereeAssignment> refereeAssignments;
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 }
 

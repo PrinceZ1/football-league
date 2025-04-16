@@ -1,5 +1,5 @@
 package com.princez1.football_league.enums;
 
-public enum PlayerRole {
+public enum GamePlayerRole {
     STARTER, SUBSTITUTE
 }

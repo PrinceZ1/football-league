@@ -5,27 +5,31 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "award")
+@Table(name = "player_ranking", indexes = {
+        @Index(name = "idx_player_ranking_season", columnList = "seasonId")
+})
 @Data
-public class Award {
+public class PlayerRanking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
-    private String name;
+    private int goals;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal value;
+    @Column(nullable = false)
+    private int assists;
 
     @ManyToOne
     @JoinColumn(name = "seasonId", nullable = false)
     private Season season;
+
+    @ManyToOne
+    @JoinColumn(name = "playerId", nullable = false)
+    private Player player;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

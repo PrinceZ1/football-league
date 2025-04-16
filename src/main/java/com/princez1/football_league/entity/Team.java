@@ -1,41 +1,42 @@
 package com.princez1.football_league.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "team")
+@Table(name = "team", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name", "seasonId"})
+})
+@Data
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "season_id", nullable = false)
+    @JoinColumn(name = "seasonId", nullable = false)
     private Season season;
 
-    @OneToMany(mappedBy = "team")
-    private List<Player> players;
-
-    @OneToMany(mappedBy = "homeTeam")
-    private List<Game> homeGames;
-
-    @OneToMany(mappedBy = "awayTeam")
-    private List<Game> awayGames;
-
-    @OneToMany(mappedBy = "team")
-    private List<TeamRanking> teamRankings;
-
-    @OneToMany(mappedBy = "team")
-    private List<FairPlayRanking> fairPlayRankings;
-
-    @OneToOne(mappedBy = "team")
+    @ManyToOne
+    @JoinColumn(name = "coachId", nullable = false)
     private User coach;
 
-    // Getters and Setters
-}
+    @Column
+    private LocalDateTime deletedAt;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+}

@@ -1,29 +1,48 @@
 package com.princez1.football_league.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sponsorship")
+@Data
 public class Sponsorship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal amount;
 
     @Column(nullable = false)
-    private double amount;
+    private LocalDate startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(nullable = false)
     private LocalDate endDate;
 
     @ManyToOne
-    @JoinColumn(name = "sponsor_id", nullable = false)
+    @JoinColumn(name = "sponsorId", nullable = false)
     private Sponsor sponsor;
 
     @ManyToOne
-    @JoinColumn(name = "season_id", nullable = false)
+    @JoinColumn(name = "seasonId", nullable = false)
     private Season season;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "teamId")
+    private Team team;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 }
