@@ -19,7 +19,7 @@ public class Round {
     private Season season;
 
     @OneToMany(mappedBy = "round")
-    private List<Match> matches;
+    private List<Game> games;
 
     // Getters and Setters
 }

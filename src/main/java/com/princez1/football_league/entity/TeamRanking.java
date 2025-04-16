@@ -10,7 +10,7 @@ public class TeamRanking {
     private Long id;
 
     @Column(nullable = false)
-    private int matchesPlayed;
+    private int gamesPlayed;
 
     @Column(nullable = false)
     private int wins;

@@ -4,8 +4,8 @@ import com.princez1.football_league.enums.PlayerRole;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "match_player")
-public class MatchPlayer {
+@Table(name = "game_player")
+public class GamePlayer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,8 +15,8 @@ public class MatchPlayer {
     private PlayerRole role;
 
     @ManyToOne
-    @JoinColumn(name = "match_id", nullable = false)
-    private Match match;
+    @JoinColumn(name = "game_id", nullable = false)
+    private Game game;
 
     @ManyToOne
     @JoinColumn(name = "team_id", nullable = false)

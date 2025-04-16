@@ -15,8 +15,8 @@ public class RefereeAssignment {
     private RefereeRole role;
 
     @ManyToOne
-    @JoinColumn(name = "match_id", nullable = false)
-    private Match match;
+    @JoinColumn(name = "game_id", nullable = false)
+    private Game game;
 
     @ManyToOne
     @JoinColumn(name = "referee_id", nullable = false)

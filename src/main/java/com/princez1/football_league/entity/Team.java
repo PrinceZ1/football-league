@@ -22,10 +22,10 @@ public class Team {
     private List<Player> players;
 
     @OneToMany(mappedBy = "homeTeam")
-    private List<Match> homeMatches;
+    private List<Game> homeGames;
 
     @OneToMany(mappedBy = "awayTeam")
-    private List<Match> awayMatches;
+    private List<Game> awayGames;
 
     @OneToMany(mappedBy = "team")
     private List<TeamRanking> teamRankings;

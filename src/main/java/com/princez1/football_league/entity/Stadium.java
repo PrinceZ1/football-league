@@ -21,7 +21,7 @@ public class Stadium {
     private int capacity;
 
     @OneToMany(mappedBy = "stadium")
-    private List<Match> matches;
+    private List<Game> games;
 
     // Getters and Setters
 }

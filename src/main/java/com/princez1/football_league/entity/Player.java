@@ -3,7 +3,6 @@ package com.princez1.football_league.entity;
 import com.princez1.football_league.enums.PlayerStatus;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -31,10 +30,10 @@ public class Player {
     private Team team;
 
     @OneToMany(mappedBy = "player")
-    private List<MatchEvent> matchEvents;
+    private List<GameEvent> gameEvents;
 
     @OneToMany(mappedBy = "player")
-    private List<MatchPlayer> matchPlayers;
+    private List<GamePlayer> gamePlayers;
 
     @OneToMany(mappedBy = "player")
     private List<TopScorerRanking> topScorerRankings;
