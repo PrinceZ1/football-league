@@ -10,11 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "game", indexes = {
-        @Index(name = "idx_game_round", columnList = "round_id"),
-        @Index(name = "idx_game_teams", columnList = "home_team_id, away_team_id"),
-        @Index(name = "idx_game_date", columnList = "game_date")
-})
+@Table(name = "game")
 @Data
 public class Game {
     @Id

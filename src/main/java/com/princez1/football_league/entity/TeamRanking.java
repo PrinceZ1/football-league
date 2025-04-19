@@ -8,9 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "team_ranking", indexes = {
-        @Index(name = "idx_team_ranking_season", columnList = "seasonId")
-})
+@Table(name = "team_ranking")
 @Data
 public class TeamRanking {
     @Id

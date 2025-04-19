@@ -11,9 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "season", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"year"})
-})
+@Table(name = "season")
 @Data
 public class Season {
     @Id

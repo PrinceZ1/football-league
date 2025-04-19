@@ -9,9 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "referee_assignment", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"game_id", "role"})
-})
+@Table(name = "referee_assignment")
 @Data
 public class RefereeAssignment {
     @Id

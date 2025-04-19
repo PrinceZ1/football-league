@@ -9,9 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "game_event", indexes = {
-        @Index(name = "idx_game_event_game", columnList = "game_id")
-})
+@Table(name = "game_event")
 @Data
 public class GameEvent {
     @Id

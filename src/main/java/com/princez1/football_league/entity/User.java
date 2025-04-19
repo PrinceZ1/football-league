@@ -2,27 +2,29 @@ package com.princez1.football_league.entity;
 
 import com.princez1.football_league.enums.UserRole;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user", indexes = {
-        @Index(name = "idx_user_username", columnList = "username"),
-        @Index(name = "idx_user_email", columnList = "email")
-})
+@Table(name = "user")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String email;
 
-    // Must be hashed (e.g., using bcrypt) before storage
     @Column(nullable = false)
     private String password;
 
@@ -32,9 +34,6 @@ public class User {
 
     @Column(nullable = false)
     private String fullName;
-
-    @Column(unique = true, nullable = false)
-    private String email;
 
     private String phone;
 

@@ -9,9 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "team", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name", "season_id"})
-})
+@Table(name = "team")
 @Data
 public class Team {
     @Id
